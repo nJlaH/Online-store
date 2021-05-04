@@ -45,10 +45,10 @@ def cookieCart(request):
 
 def cartData(request):
 
-    if request.user.is_authenticated:  # если пользователь залогинен
-        customer = request.user.customer  # не понятно. Вроде как мы достаем идентификатор юзера по тому OneToOne полю в моделях. Но как? Не понимаю
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)  # мы либо достаем имеющийся заказ по указанным параметрам, либо создаем по ним новый
-        items = order.orderitem_set.all()  # ДОСТАЕМ все предметы из order. order - родительский объект. --- У нас в моделях находится FK между OrderItem и Order, поэтому тут мы и пишем: order.orderitem_set() - OrderItem пишем строчными буквами (по синтаксису) + добавляем "_set()"
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()  # ДОСТАЕМ все предметы из order
         cartItems = order.get_cart_items
     else:
         cookieData = cookieCart(request)

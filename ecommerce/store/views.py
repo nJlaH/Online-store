@@ -36,7 +36,6 @@ def checkout(request):
 
     return render(request, 'store/checkout.html', context)
 
-# Похоже, что тут мы каким-то образом получаем JSON-код, алгоритм получения которого записан в cart.js (???)
 def updateItem(request):
     data = json.loads(request.body)
     productId = data['productId']  # получаем id товара, к которому относится нажатая кнопка

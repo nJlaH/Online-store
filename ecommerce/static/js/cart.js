@@ -52,12 +52,11 @@ function addCookieItem(productId, action) {
     location.reload()
 }
 
-function updateUserOrder(productId, action) {  // функция вносит изменения в корзину с товарами по входящему id товара и типу действия - action
+function updateUserOrder(productId, action) {
     console.log("updateUserOrder")
 
     var url = "/update_item/"  // URL, по которому будут посылаться данные
 
-    // fetch --- я его не понимаю, но очень похоже на более-менее типовую структуру
     //******************************************************************************************************************
     fetch(url, {
         method: "POST",
