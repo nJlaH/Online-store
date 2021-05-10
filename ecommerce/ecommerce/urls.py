@@ -23,4 +23,4 @@ urlpatterns = [
     path('', include('store.urls')),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # мне непонятна эта строка. Благодаря этой строке мы можем видеть фотографии... но как это работает? (тайминг: 29:00, https://www.youtube.com/watch?v=obZMr9URmVI&list=PL-51WBLyFTg0omnamUjL1TCVov7yDTRng&index=3). В store.html мы тоже очень непонятно ссылаемся на картинку... как это происходит?
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
