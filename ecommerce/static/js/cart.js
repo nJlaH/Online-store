@@ -20,16 +20,6 @@ for (var i = 0; i < updateBtns.length; i++) {
 function addCookieItem(productId, action) {
     console.log('Not logged in..')
 
-    // *****************************************************************************************************************
-    // Куки в нашем случае представляют собой dictionary в dictionary. То есть у нас есть ключ (productId) и каждому ключу соответствует {'quantity : ___}, где ___ - число товаров.
-    // Все выглядит примерно так:
-    // cart = {
-    //     1:{'quantity' : 4},
-    //     4:{'quantity' : 1},
-    //     6:{'quantity' : 2}
-    // }
-    // *****************************************************************************************************************
-
 	if (action == 'add'){
 		if (cart[productId] == undefined){
 		cart[productId] = {'quantity':1}
@@ -55,9 +45,8 @@ function addCookieItem(productId, action) {
 function updateUserOrder(productId, action) {
     console.log("updateUserOrder")
 
-    var url = "/update_item/"  // URL, по которому будут посылаться данные
+    var url = "/update_item/"
 
-    //******************************************************************************************************************
     fetch(url, {
         method: "POST",
         headers: {
@@ -75,6 +64,5 @@ function updateUserOrder(productId, action) {
         console.log("data:", data)
         location.reload()
     })
-    //******************************************************************************************************************
 
 }
