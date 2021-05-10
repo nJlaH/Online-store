@@ -38,8 +38,8 @@ def checkout(request):
 
 def updateItem(request):
     data = json.loads(request.body)
-    productId = data['productId']  # получаем id товара, к которому относится нажатая кнопка
-    action = data['action']  # получаем тип действия, которе нужно запустить по нажатию кнопки
+    productId = data['productId']
+    action = data['action']
 
     print("productId:", productId)
     print("action:", action)
