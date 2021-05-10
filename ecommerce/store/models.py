@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Юзер
+
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=50, null=True)
@@ -11,7 +11,6 @@ class Customer(models.Model):
         return self.name
 
 
-# Конкретный продукт
 class Product(models.Model):
     name = models.CharField(max_length=255, null=True)
     price = models.DecimalField(max_digits=8, decimal_places=2)
@@ -30,7 +29,6 @@ class Product(models.Model):
         return url
 
 
-# Корзина (все добавленные товары всех позиций)
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
@@ -40,7 +38,6 @@ class Order(models.Model):
     def __str__(self):
         return str(self.id)
 
-    # Проверка на необходимость ввода данных для доставки
     @property
     def shipping(self):
         shipping = False
@@ -50,7 +47,6 @@ class Order(models.Model):
                 shipping = True
         return shipping
 
-# **********************************************************************************************************************
     @property
     def get_cart_total(self):
         orderitems = self.orderitem_set.all()
@@ -62,10 +58,8 @@ class Order(models.Model):
         orderitems = self.orderitem_set.all()
         total = sum([item.quantity for item in orderitems])
         return total
-# **********************************************************************************************************************
 
 
-# Товар конкретной позиции в корзине (один или много)
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
